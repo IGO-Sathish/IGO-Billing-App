@@ -7,7 +7,7 @@ import OldLogin from './auth/Login'
 import Login from './auth/new_Login';
 
 const App = () => {
-
+  
   const [user, setUser] = useState('Guest')
 
   return (
