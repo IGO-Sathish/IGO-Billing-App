@@ -4,7 +4,7 @@ import { FaLock } from "react-icons/fa6";
 
 import signup_image from "../images/signup-image.jpg"
 
-import './new_register_and_login.css'
+import "./newRegisterLogin.css"
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 
 
