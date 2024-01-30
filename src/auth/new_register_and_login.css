@@ -396,6 +396,14 @@ figure {
     text-align: center;
 }
 
+.signin-image-link {
+    font-size: 14px;
+    color: #222;
+    display: block;
+    text-align: center;
+}
+
+
 .term-service {
     font-size: 13px;
     color: #222;

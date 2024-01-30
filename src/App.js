@@ -1,9 +1,10 @@
 import './App.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
-import Login from './auth/Login';
-import Register from './auth/Register';
-import NewRegister from './auth/new_Register'
+import OldLogin from './auth/Login';
+import Register from './auth/new_Register';
+import OldRegister from './auth/Register'
+import Login from './auth/new_Login';
 
 const App = () => {
 
@@ -15,8 +16,9 @@ const App = () => {
       <Routes>
 
         <Route path="/" element={<Login user={user} setUser={setUser} />} />
+        {/* <Route path="/Login" element={<OldLogin/>} /> */}
         <Route path="/register" element={<Register/>} />
-        <Route path="/newRegister" element={<NewRegister/>} />
+        <Route path="/newRegister" element={<OldRegister/>} />
         <Route path="*" element={<Navigate to="/" />} />
 
       </Routes>

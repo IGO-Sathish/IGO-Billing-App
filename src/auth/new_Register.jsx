@@ -5,7 +5,7 @@ import { FaLock } from "react-icons/fa6";
 import { MdLockOutline } from "react-icons/md";
 import { FaUser } from "react-icons/fa6";
 
-import './new_register.css'
+import './new_register_and_login.css'
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 
 
@@ -45,7 +45,7 @@ const new_Register = () => {
                         </form>
                     </div>
                     <div className="signup-image">
-                        <img src={signup_image} alt="sing up image"/>
+                        <img src={signup_image} alt="sing up image" />
                         <Link to="/" className="signup-image-link" >I have already account</Link>
 
                     </div>

@@ -33,7 +33,7 @@ const Login = ({user,setUser}) => {
 
     return (
         <div>
-                   <Link to="/register">Register</Link>
+                 
             <h2>Login</h2>
             <form onSubmit={handleLogin}>
                 <input
