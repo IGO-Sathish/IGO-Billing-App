@@ -46,7 +46,7 @@ const new_Register = () => {
                     </div>
                     <div className="signup-image">
                         <img src={signup_image} alt="sing up image" />
-                        <Link to="/" className="signup-image-link" >I have already account</Link>
+                        <Link  to="/" className="signup-image-link" >I have already account</Link>
 
                     </div>
                 </div>
