@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { auth } from './firebase'; // Make sure the path is correct
 import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
-import Register from './new_Register'
+
 
 // ... (rest of the code remains the same)
 
