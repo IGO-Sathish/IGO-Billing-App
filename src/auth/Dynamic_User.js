@@ -12,6 +12,8 @@
 
 import React from "react";
 import Appdummy from "./Appdummy";
+import Search from"./Components/Search.jsx"
+import Memoize from "./Components/Memoize";
 
 class App extends  React.Component {
 
@@ -52,6 +54,11 @@ class App extends  React.Component {
 
          <Appdummy dataproptransfer={characters} />
 
+         </div>
+
+         <div>
+            {/* <Search/> */}
+            <Memoize/>
          </div>
 
         </div>
