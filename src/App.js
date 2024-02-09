@@ -5,7 +5,7 @@ import Register from './auth/Register';
 
 import Login from './auth/Login';
 import Greet from './auth/Greet';
-import Dynamic_User from './auth/Dynamic_User'
+import Dynamic_User from './auth/Components/LearnApp'
 
 
 const App = () => {
