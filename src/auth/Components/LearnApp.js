@@ -5,7 +5,8 @@ import Memoize from "./Memoize";
 import Apidata from "./ApiData.jsx";
 import Col1 from "./Col1";
 import Col2 from "./Component_ARU";
-import  Add_Remove from '../Add_Remove/Add_Remove.jsx'
+import  AddRemove from '../Add_Remove/Add_Remove.jsx'
+import Greet from '../Greet'
 
 class App extends React.Component {
 
@@ -63,9 +64,12 @@ class App extends React.Component {
 
 
 
+<div className=" Dynamic_User">
+          < Greet/>
+        </div>
 
         <div className=" Dynamic_User">
-          < Add_Remove/>
+          < AddRemove/>
         </div>
 
 
@@ -85,17 +89,17 @@ class App extends React.Component {
         </div>
 
         <div className=" Dynamic_User">
-          <h2> Search Bar </h2>
+          <h2  className="text-3xl font-bold text-gray-900  "  > Search Bar </h2>
           <Search />
         </div>
 
         <div className=" Dynamic_User">
-          <h2> Memoize </h2>
+          <h2  className="text-3xl font-bold text-gray-900  "  > Memoize </h2>
           <Memoize />
         </div>
 
         <div className=" Dynamic_User">
-          <h2> Json Apidata </h2>
+          <h2  className="text-3xl font-bold text-gray-900  "  > Json Apidata </h2>
           <Apidata />
         </div>
       </div>

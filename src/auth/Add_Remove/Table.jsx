@@ -1,5 +1,5 @@
 import React from "react";
-import Add_input from "./Add_input";
+import AddInput from "./Add_input";
 
 const TableHeader = () => {
     return (
@@ -7,7 +7,7 @@ const TableHeader = () => {
             <tr>
                 <th>Name</th>
                 <th>Job</th>
-                <th>Action</th>
+                <th className=" text-center" >Action</th>
             </tr>
         </thead>
     );
@@ -17,10 +17,13 @@ const TableBody = ({ character, removeFunction }) => {
 
     const rows = character.map((val, index) =>
 
-        <tr>
+        <tr className="mb-2 h-[50px]" >
             <td>{val.name}</td>
             <td>{val.job}</td>
-            <td> <button onClick={() => removeFunction(index)} > Remove </button> </td>
+            <td > 
+            <button className="h-[40px] w-[120px] text-center  px-2 m-2  text-red-100 transition-colors duration-150 font-bold  bg-red-500 rounded-lg focus:shadow-outline hover:bg-red-800" onClick={() => removeFunction(index)} > Remove </button> 
+            
+            </td>
         </tr>
 
     )
@@ -45,7 +48,7 @@ class Table extends React.Component {
 
             <table>
                 <TableHeader />
-                <Add_input handleSubmit={handleSubmit} />
+                <AddInput handleSubmit={handleSubmit} />
 
                 <TableBody removeFunction={removeFunction} character={character} />
             </table>

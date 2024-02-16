@@ -38,20 +38,14 @@ const New_Login = ({ user, setUser }) => {
             <div
                 class="container flex justify-center items-center max-w-[65%] mx-auto xl:max-w-3xl  bg-white rounded-lg shadow overflow-hidden"
             >
-                <div class=" justify-center  items-center w-full lg:flex  hidden xl:w-1/2 h-full">
-
-                    <img class="" src={signup_image} alt="sing up" />
-
-
-                </div>
-                <div class="w-full xl:w-1/2 p-10">
+                 <div class="w-full xl:w-1/2 p-10">
                     <form method="post" action="#" onSubmit={handleLogin}>
-                        <h1 class=" text-2xl font-bold">Sign in to your account</h1>
+                        <h1 class=" text-2xl font-bold">Reset password below.</h1>
                         <div>
                             <span class="text-gray-600 text-sm">
                                 Don't have an account?
                             </span>
-                            <Link to="/register" class="text-gray-700 text-sm font-semibold signin-image-link" > Sign up</Link>
+                            <Link to="/login" class="text-gray-700 text-sm font-semibold signin-image-link"> Sign In </Link>
 
                         </div>
                         <div class="mb-4 mt-6">
@@ -61,13 +55,13 @@ const New_Login = ({ user, setUser }) => {
                                 htmlFor="email"
                             >
 
-                                Email
+                              Name
                             </label>
                             <input
                                 class="text-sm appearance-none rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline h-10"
                                 id="email"
                                 type="text"
-                                placeholder="Your email address"
+                                placeholder="Your name"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)} />
 
@@ -87,20 +81,25 @@ const New_Login = ({ user, setUser }) => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-
-<Link to="/forgotpassword" class="inline-block align-baseline text-sm text-gray-600 hover:text-gray-800"> Forgot Password? </Link>
-
+                   
                         </div>
                         <div class="flex w-full mt-8">
                             <button
                                 class="w-full bg-blue-500 hover:bg-grey-900 text-white text-sm py-2 px-4 font-semibold rounded focus:outline-none focus:shadow-outline h-10"
                                 type="submit" name="signin" id="signin" value="Login"
                             >
-                                Sign in
+                               Submit
                             </button>
                         </div>
                     </form>
                 </div>
+                <div class=" justify-center  items-center w-full lg:flex  hidden xl:w-1/2 h-full">
+
+                    <img class="" src={signup_image} alt="sing up" />
+
+
+                </div>
+               
             </div>
         </div>
 

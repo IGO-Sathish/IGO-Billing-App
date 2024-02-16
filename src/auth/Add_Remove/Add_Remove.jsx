@@ -22,8 +22,8 @@ class Add_Remove extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Add & Remove User Data</h1>
+            <div className=" flex flex-col items-center " >
+                <h1 className="text-3xl font-bold text-gray-900 mb-12  " >Add & Remove User Data</h1>
 
          
 

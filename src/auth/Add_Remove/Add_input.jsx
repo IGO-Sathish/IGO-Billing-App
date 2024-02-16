@@ -48,7 +48,7 @@ class Add_input extends React.Component {
                         />
                     </td>
                     <td>
-                        <button type="button"  onClick={this.submitForm}  value="Add">
+                        <button className="h-[40px] w-[120px] text-center font-bold  px-2 m-2 text-green-100 transition-colors duration-150 bg-green-600 rounded-lg focus:shadow-outline hover:bg-green-800" type="button"  onClick={this.submitForm}  value="Add">
                             Add
                         </button>
                     </td>

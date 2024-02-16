@@ -33,16 +33,6 @@ const TableBody = (props) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
 class  Table extends React.Component {
 
 

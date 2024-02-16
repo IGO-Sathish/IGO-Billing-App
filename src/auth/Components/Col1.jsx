@@ -21,9 +21,9 @@ const Col1 = () => {
     const inc = () => { setCount(count + 1) }
 
     return (
-        <div>
-            <h2> {count} </h2>
-            <button onClick={inc} > Add </button>
+        <div className=' flex items-center flex-col ' >
+            <h2  className="text-3xl font-bold text-gray-900  " > {count} </h2>
+            <button  className='h-10 px-5 m-2 text-green-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800' onClick={inc} > Add + 1 </button>
         </div>
     )
 

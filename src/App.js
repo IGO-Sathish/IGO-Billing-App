@@ -6,6 +6,7 @@ import Register from './auth/Register';
 import Login from './auth/Login';
 import Greet from './auth/Greet';
 import DynamicUser from './auth/Components/LearnApp'
+import ForgotPassword from './auth/ForgotPassword'
 
 
 const App = () => {
@@ -13,6 +14,8 @@ const App = () => {
   const [user, setUser] = useState('Guest')
 
   return (
+
+
     <Router>
 
       <Routes>
@@ -20,6 +23,8 @@ const App = () => {
         <Route path="/" element={<Login user={user} setUser={setUser} />} />
 
         <Route path="/register" element={<Register/>} />
+        
+        <Route path="/forgotpassword" element={<ForgotPassword/>} />
    
         <Route path="/User" element={<Greet/>} />
         <Route path="/User:userId" element={<DynamicUser/>} />
