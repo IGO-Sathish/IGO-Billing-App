@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa6";
 
 import '../auth/styleRegisterLogin.css'
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 
 
 
@@ -43,7 +43,7 @@ const New_Login = ({ user, setUser }) => {
 
                     <div className="signin-content">
                         <div className="signin-image">
-                            <img src={signup_image} alt="sing up image" />
+                            <img src={signup_image} alt="sing up" />
                             <Link to="/register" className='signin-image-link' >Create an account</Link>
                         </div>
 

@@ -12,7 +12,7 @@ import '../auth/styleRegisterLogin.css'
 
 
 
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 
 
@@ -74,7 +74,7 @@ const New_Register = () => {
                             </div>
                             <div className="form-group D_f">
                                 <input type="checkbox" name="agree-term" id="agree-term" className="agree-term" />
-                                <label htmlFor="agree-term" className="label-agree-term">I agree all statements in <a href="#" className="term-service">Terms of service</a></label>
+                                <label htmlFor="agree-term" className="label-agree-term">I agree all statements in <a href="https://igob.netlify.app" className="term-service">Terms of service</a></label>
                             </div>
                             <div className="form-group form-button">
                                 <input type="submit" name="signup" id="signup" className="form-submit" value="Register" />
@@ -82,7 +82,7 @@ const New_Register = () => {
                         </form>
                     </div>
                     <div className="signup-image">
-                        <img src={signup_image} alt="sign up image" />
+                        <img src={signup_image} alt="sign up" />
                         <Link to="/login" className="signup-image-link">I already have an account</Link>
                     </div>
                 </div>

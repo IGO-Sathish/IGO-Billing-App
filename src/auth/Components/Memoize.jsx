@@ -17,11 +17,11 @@ const inc2 =()=> {
 
 }
 
-const inc3 =()=> {
-    console.log(2);
-    setCount2( count2 + 1  )
+// const inc3 =()=> {
+//     console.log(2);
+//     setCount2( count2 + 1  )
 
-}
+// }
 
 const funS = useMemo(() =>{
     console.log("Working" 
@@ -29,7 +29,7 @@ const funS = useMemo(() =>{
     let i=0;
     while(i<50000000) i++;
     return count%2===0
-}, [count, count2])
+}, [count])
 
 return(
     <div>

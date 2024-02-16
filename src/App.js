@@ -1,11 +1,11 @@
 import './App.css';
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes,  Navigate } from 'react-router-dom';
 import Register from './auth/Register';
 
 import Login from './auth/Login';
 import Greet from './auth/Greet';
-import Dynamic_User from './auth/Components/LearnApp'
+import DynamicUser from './auth/Components/LearnApp'
 
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/register" element={<Register/>} />
    
         <Route path="/User" element={<Greet/>} />
-        <Route path="/User:userId" element={<Dynamic_User/>} />
+        <Route path="/User:userId" element={<DynamicUser/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 

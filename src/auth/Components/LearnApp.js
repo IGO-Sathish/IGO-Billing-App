@@ -5,6 +5,7 @@ import Memoize from "./Memoize";
 import Apidata from "./ApiData.jsx";
 import Col1 from "./Col1";
 import Col2 from "./Component_ARU";
+import  Add_Remove from '../Add_Remove/Add_Remove.jsx'
 
 class App extends React.Component {
 
@@ -37,15 +38,15 @@ class App extends React.Component {
     // this.state.characters
 
 
-   let filtered = characters.filter((character, i) => {
-    return i !== index;
-    
+    let filtered = characters.filter((character, i) => {
+      return i !== index;
 
 
-  });
 
- // Update the state with the filtered characters
- this.setState({ characters:filtered });
+    });
+
+    // Update the state with the filtered characters
+    this.setState({ characters: filtered });
 
 
   };
@@ -58,6 +59,16 @@ class App extends React.Component {
         className="container "
         style={{ flexDirection: "column", marginTop: "20px", height: "100%" }}
       >
+
+
+
+
+
+        <div className=" Dynamic_User">
+          < Add_Remove/>
+        </div>
+
+
         <div className=" Dynamic_User">
           <Table
             removerCharacter={this.removerCharacter}
