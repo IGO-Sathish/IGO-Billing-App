@@ -217,16 +217,12 @@ function Invoice() {
           </div>
 
           {isAddFormView ? (
-            <div className="h-screen w-screen bg-[#000000a6] z-[100] absolute top-0 left-0">
-              <div
-                id="popup-modal"
-                tabindex="-1"
-                class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
-              >
+            <div className="h-screen w-screen bg-[#000000a6] z-[100]  flex justify-center items-center absolute top-0 left-0">
+              <div>
                 <div class="relative p-4 w-full  h-full  flex justify-center items-center ">
                   <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <div class="p-4 md:p-5 text-center  ">
-                      <div class="relative mb-4   ">
+                    <div class="p-8  text-center  ">
+                      <div class="relative mb-3   ">
                         <div class=" absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                           <CiHashtag className="text-gray-500" />
                         </div>
