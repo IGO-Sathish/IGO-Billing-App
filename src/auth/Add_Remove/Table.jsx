@@ -1,6 +1,7 @@
 import React from "react";
 import AddInput from "./Add_input";
 
+
 const TableHeader = () => {
     return (
         <thead>

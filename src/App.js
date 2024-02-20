@@ -7,6 +7,7 @@ import Login from './auth/Login';
 import Greet from './auth/Greet';
 import DynamicUser from './auth/Components/LearnApp'
 import ForgotPassword from './auth/ForgotPassword'
+import Template from './auth/Invoice/Template.jsx'
 
 
 const App = () => {
@@ -25,9 +26,9 @@ const App = () => {
         <Route path="/register" element={<Register/>} />
         
         <Route path="/forgotpassword" element={<ForgotPassword/>} />
-   
-        <Route path="/User" element={<Greet/>} />
-        <Route path="/User:userId" element={<DynamicUser/>} />
+        <Route path="/user" element={<Greet/>} />
+        <Route path="/template" element={<Template/>} />
+        <Route path="/user:userId" element={<DynamicUser/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
