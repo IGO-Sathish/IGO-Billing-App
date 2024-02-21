@@ -3,6 +3,12 @@ import IgoLogo from "../Invoice/Igo.png";
 import { MdCurrencyRupee } from "react-icons/md";
 import { useRef, useState, useEffect } from "react";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { MdModeEdit } from "react-icons/md";
+import { IoTrashOutline } from "react-icons/io5";
+
+
+
+
 
 function Template(props) {
     const ref = useRef();
@@ -13,15 +19,35 @@ function Template(props) {
 
     const [vat, setVat] = useState('')
 
+    const removeFunction = (index) => {
+        let Filtered = List.filter((Item, i) => {
+            return i !== index;
+        });
+        setList(Filtered);
+    };
+
+    const updatedEditOpenClick = (items, index) => {
+
+        setAirPopup(true);
+        setAmount(items.amount);
+        setItem(items.product);
+
+    }
+
+
+    const closePopup = () => {
+        setAirPopup(false);
+        setAmount("");
+        setItem("");
+
+    }
+
+
     useEffect(() => {
         console.log(`useEffect is working`);
     }, [vat, Amount])
 
-    // const [Discount, setDiscount] = useState(props.discount);
-    // const [Products, setProducts] = useState([]);
-    // const [productName, setProductName] = useState('');
-    // const [productAmout, setProductAmount] = useState(0);
-    // const [Total, setTotal] = useState(0);
+
 
     const [List, setList] = useState([]);
 
@@ -30,7 +56,7 @@ function Template(props) {
             product: Item,
             amount: Amount,
         });
-        // console.log(List);
+
         setItem("");
         setAmount("");
         setAirPopup(false);
@@ -41,8 +67,7 @@ function Template(props) {
     List.forEach((amount) => {
         sum += parseInt(amount.amount);
     });
-    //   setTotal(sum)
-    // console.log(`Sum is = ${sum}`);
+
 
 
 
@@ -55,7 +80,6 @@ function Template(props) {
 
 
     let ab = 0;
-
     function vatOnchange(vat, sum) {
         ab = (sum * vat) / 100;
     }
@@ -63,11 +87,11 @@ function Template(props) {
     let abc = vatOnchange(vat, sum);
 
 
+
     let b = 0;
     function totalFunction(ab, sum) {
         let a = (parseInt(sum)) + (parseInt(ab))
         b = a;
-        // console.log(b)
         return b;
     }
 
@@ -94,17 +118,9 @@ function Template(props) {
                                                         {props.InvoiceNumber}{" "}
                                                     </span>{" "}
                                                 </h2>
-                                                {/* <div className='font-semibold text-[20px] mt-[-10px]   ' style={{ color: '#EC842A' }} > {props.InvoiceNumber}</div> */}
                                             </div>
 
-                                            {/* <div>
-                                                <select className=' font-semibold  mt-3 text-left border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 px-4 py-2 text-sm text-gray-700'>
-                                                    <option value="">Tax Invoice</option>
-                                                    <option value="option1">Option 1</option>
-                                                    <option value="option2">Option 2</option>
-                                                    <option value="option3">Option 3</option>
-                                                </select>
-                                             </div> */}
+
                                         </div>
 
                                         <h4
@@ -113,7 +129,6 @@ function Template(props) {
                                         >
                                             <strong>Payment Details</strong>
                                         </h4>
-                                        {/* <p className='flex mt-2 ' > <div className='text-gray-400 w-[90px] ' >Invoice Date</div>   <div className=' w-[10px] text-gray-400' >: </div>20-Feb-2024</p> */}
 
                                         <p className="flex mt-2 ">
                                             {" "}
@@ -196,6 +211,9 @@ function Template(props) {
                                                 <th>
                                                     <h5>Price</h5>
                                                 </th>
+                                                <th>
+                                                    <h5 className=" text-center">Edit</h5>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -204,12 +222,23 @@ function Template(props) {
                                                     return (
                                                         <tr key={index}>
                                                             <td className="col-md-9">{items.product}</td>
-                                                            <td className="col-md-3">
+                                                            <td className="col-md-2">
                                                                 <i
                                                                     className="fas fa-rupee-sign"
                                                                     area-hidden="true"
                                                                 ></i>{" "}
                                                                 ₹ {items.amount}{" "}
+                                                            </td>
+                                                            <td className="col-md-1">
+                                                                <div className=" flex justify-around items-center gap-2 " >
+                                                                    <button type="button" onClick={() => updatedEditOpenClick(items, index)} class=" w-[100%] h-[25px] flex justify-center items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600
+                                                             dark:hover:text-white dark:hover:bg-gray-700"><MdModeEdit /></button>
+                                                                    <button type="button"
+                                                                        onClick={() => removeFunction(index)}
+                                                                        class=" w-[100%] h-[25px] flex justify-center items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600
+                                                             dark:hover:text-white dark:hover:bg-gray-700"><IoTrashOutline /></button>
+
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     );
@@ -220,9 +249,7 @@ function Template(props) {
                                                     <p>
                                                         <strong className="" >Sub Total </strong>  <strong>: </strong>
                                                     </p>
-                                                    {/* <p>
-                                                        <strong>Discount: </strong>
-                                                    </p> */}
+
                                                     <p>
 
                                                         <strong>VAT</strong>
@@ -240,9 +267,7 @@ function Template(props) {
                                                             ₹ {sum}
                                                         </strong>
                                                     </p>
-                                                    {/* <p>
-                                                        <strong><i className="fas fa-rupee-sign" area-hidden="true"></i> ₹ {Discount} </strong>
-                                                    </p> */}
+
                                                     <p>
                                                         <strong>
                                                             <i
@@ -252,6 +277,9 @@ function Template(props) {
                                                             ₹  {Math.round(ab)}
                                                         </strong>
                                                     </p>
+                                                </td>
+                                                <td>
+
                                                 </td>
                                             </tr>
                                             <tr style={{ color: "#F81D2D" }}>
@@ -270,6 +298,10 @@ function Template(props) {
                                                             ₹ {Math.round(b)}{" "}
                                                         </strong>
                                                     </h4>
+                                                </td>
+
+                                                <td>
+
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -293,9 +325,7 @@ function Template(props) {
                                         </p>
                                     </div>
 
-                                    {/* <br />
-                                        <p className='text-sm ' ><strong>Name</strong></p>
-                                        <p className='text-sm ' ><strong>Contact: (+91) 1234567890</strong></p> */}
+
                                 </div>
                             </div>
                         </div>
@@ -332,68 +362,68 @@ function Template(props) {
 
 
             {openAirPopup ?
-            
-            
-            <div className="h-screen w-screen bg-[#000000a6] z-[100] absolute flex items-center justify-center top-0 left-0">
-           
-            
-            
-            <div className="  rounded-lg w-[450px] shadow-lg  z-20  overflow-y-auto">
-                <div>
-                    <div className=" p-3   bg-gray-50 text-[20px]  font-semibold ">
-                        <div className=" ">New List Item</div>
-                    </div>
-                </div>
-                <div className="p-4 bg-white  ">
-                    <div className="p-4 md:p-5 text-center">
-                        <div className="mb-4">
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <MdOutlineDriveFileRenameOutline className="text-gray-500" />
-                                </div>
-                                <input
-                                    type="text"
-                                    value={Item}
-                                    onChange={(e) => setItem(e.target.value)}
-                                    placeholder="Enter item name"
-                                    className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full pl-10 py-2.5 focus:outline-none focus:ring focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                />
-                            </div>
-                            <div className="mt-2 relative">
-                                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <MdCurrencyRupee className="text-gray-500" />
-                                </div>
-                                <input
-                                    type="number"
-                                    value={Amount}
-                                    onChange={(e) => setAmount(e.target.value)}
-                                    placeholder="Enter amount"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full pl-10 py-2.5 focus:outline-none focus:ring focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                />
+
+
+                <div className="h-screen w-screen bg-[#000000a6] z-[100] absolute flex items-center justify-center top-0 left-0">
+
+
+
+                    <div className="  rounded-lg w-[450px] shadow-lg  z-20  overflow-y-auto">
+                        <div>
+                            <div className=" p-3   bg-gray-50 text-[20px]  font-semibold ">
+                                <div className=" ">New List Item</div>
                             </div>
                         </div>
-                        <button
-                            onClick={addData}
-                        
-                            type="button"
-                            className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:green-red-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5"
-                        >
-                            Add
-                        </button>
-                        <button
-                           
-                            type="button"
-                            onClick={() => setAirPopup(false)}
-                            className="py-2.5 px-5 ml-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                        >
-                            Cancel
-                        </button>
+                        <div className="p-4 bg-white  ">
+                            <div className="p-4 md:p-5 text-center">
+                                <div className="mb-4">
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                            <MdOutlineDriveFileRenameOutline className="text-gray-500" />
+                                        </div>
+                                        <input
+                                            type="text"
+                                            value={Item}
+                                            onChange={(e) => setItem(e.target.value)}
+                                            placeholder="Enter item name"
+                                            className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full pl-10 py-2.5 focus:outline-none focus:ring focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
+                                    </div>
+                                    <div className="mt-2 relative">
+                                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                            <MdCurrencyRupee className="text-gray-500" />
+                                        </div>
+                                        <input
+                                            type="number"
+                                            value={Amount}
+                                            onChange={(e) => setAmount(e.target.value)}
+                                            placeholder="Enter amount"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-blue-500 block w-full pl-10 py-2.5 focus:outline-none focus:ring focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={addData}
+
+                                    type="button"
+                                    className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:green-red-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5"
+                                >
+                                    Add
+                                </button>
+                                <button
+
+                                    type="button"
+                                    onClick={closePopup}
+                                    className="py-2.5 px-5 ml-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-            </div>
-            
-            </div> 
-             : null}
+                : null}
 
 
         </>

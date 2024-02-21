@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Template from "./Template";
 import { CiHashtag } from "react-icons/ci";
 
+
 import { Link } from "react-router-dom";
 
 function Invoice() {
@@ -15,27 +16,24 @@ function Invoice() {
   let newDate = new Date();
   let date = newDate.getDate();
 
-  const numbers = [
-    {
-      product: "dsdsd",
-      amount: "23782",
-    },
-    {
-      product: "dsd",
-      amount: "993",
-    },
-    {
-      product: "dssdffedfdsd",
-      amount: "623",
-    },
-  ];
+
+// import React, {  createContext, useContext } from "react";
+
+// const UserContext = createContext();
+
+
+// <UserContext.Provider > 
+
+
+// </UserContext.Provider>
+
 
   useEffect(() => {
     const current = new Date();
     const date = `${current.getDate()}/${
       current.getMonth() + 1
     }/${current.getFullYear()}`;
-    console.log(`Date is ${date}`);
+    // console.log(`Date is ${date}`);
     setDates(date);
   }, []);
 
@@ -104,96 +102,6 @@ function Invoice() {
                         </Link>
                       </div>
 
-                      <div className=" flex items-center mb-2  justify-center ">
-                        <div class=" pl-[20px] w-[211px] text-sm font-semibold text-gray-600 dark:text-white">
-                          IGO-0003
-                        </div>
-                        <Link
-                          to="/template"
-                          class="  w-[135px] ml-4  rounded-lg text-sm px-5 py-2 text-center  text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium   dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        >
-                          {" "}
-                          View{" "}
-                        </Link>
-                      </div>
-
-                      <div className=" flex items-center mb-2  justify-center ">
-                        <div class=" pl-[20px] w-[211px] text-sm font-semibold text-gray-600 dark:text-white">
-                          IGO-0004
-                        </div>
-                        <Link
-                          to="/template"
-                          class="  w-[135px] ml-4  rounded-lg text-sm px-5 py-2 text-center  text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium   dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        >
-                          {" "}
-                          View{" "}
-                        </Link>
-                      </div>
-
-                      <div className=" flex items-center mb-2  justify-center ">
-                        <div class=" pl-[20px] w-[211px] text-sm font-semibold text-gray-600 dark:text-white">
-                          IGO-0005
-                        </div>
-                        <Link
-                          to="/template"
-                          class="  w-[135px] ml-4  rounded-lg text-sm px-5 py-2 text-center  text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium   dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        >
-                          {" "}
-                          View{" "}
-                        </Link>
-                      </div>
-
-                      <div className=" flex items-center mb-2  justify-center ">
-                        <div class=" pl-[20px] w-[211px] text-sm font-semibold text-gray-600 dark:text-white">
-                          IGO-0006
-                        </div>
-                        <Link
-                          to="/template"
-                          class="  w-[135px] ml-4  rounded-lg text-sm px-5 py-2 text-center  text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium   dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        >
-                          {" "}
-                          View{" "}
-                        </Link>
-                      </div>
-
-                      <div className=" flex items-center mb-2  justify-center ">
-                        <div class=" pl-[20px] w-[211px] text-sm font-semibold text-gray-600 dark:text-white">
-                          IGO-0007
-                        </div>
-                        <Link
-                          to="/template"
-                          class="  w-[135px] ml-4  rounded-lg text-sm px-5 py-2 text-center  text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium   dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        >
-                          {" "}
-                          View{" "}
-                        </Link>
-                      </div>
-
-                      <div className=" flex items-center mb-2  justify-center ">
-                        <div class=" pl-[20px] w-[211px] text-sm font-semibold text-gray-600 dark:text-white">
-                          IGO-0008
-                        </div>
-                        <Link
-                          to="/template"
-                          class="  w-[135px] ml-4  rounded-lg text-sm px-5 py-2 text-center  text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium   dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        >
-                          {" "}
-                          View{" "}
-                        </Link>
-                      </div>
-
-                      <div className=" flex items-center mb-2  justify-center ">
-                        <div class=" pl-[20px] w-[211px] text-sm font-semibold text-gray-600 dark:text-white">
-                          IGO-0009
-                        </div>
-                        <Link
-                          to="/template"
-                          class="  w-[135px] ml-4  rounded-lg text-sm px-5 py-2 text-center  text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium   dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        >
-                          {" "}
-                          View{" "}
-                        </Link>
-                      </div>
                     </div>
                   </div>
 
@@ -239,14 +147,14 @@ function Invoice() {
 
                       <button
                         onClick={Create}
-                        data-modal-hide="popup-modal"
+          
                         type="button"
                         class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:green-red-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
                       >
                         Create
                       </button>
                       <button
-                        data-modal-hide="popup-modal"
+                   
                         onClick={() => setAddFormView(false)}
                         type="button"
                         class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800
@@ -262,7 +170,7 @@ function Invoice() {
           ) : null}
         </>
       ) : (
-        <Template InvoiceNumber={InvoiceNumber} date={Dates} />
+        <Template InvoiceNumber={InvoiceNumber} date={Dates} /> 
       )}
     </>
   );
