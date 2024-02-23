@@ -5,7 +5,7 @@ import Register from './auth/Register';
 
 import Login from './auth/Login';
 import Greet from './auth/Greet';
-import DynamicUser from './auth/Components/LearnApp'
+import DynamicUser from './auth/Component-App/LearnApp'
 import ForgotPassword from './auth/ForgotPassword'
 import Template from './auth/Invoice/Template.jsx'
 

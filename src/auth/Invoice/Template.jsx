@@ -8,8 +8,6 @@ import { IoTrashOutline } from "react-icons/io5";
 
 
 
-
-
 function Template(props) {
     const ref = useRef();
     const [openAirPopup, setAirPopup] = useState(false);

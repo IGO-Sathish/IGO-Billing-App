@@ -71,13 +71,13 @@ const New_Login = ({ user, setUser }) => {
                                 class="block text-gray-700 text-sm font-semibold mb-2"
                                 htmlFor="password"
                             >
-                                Password
+                                Email
                             </label>
                             <input
                                 class="text-sm bg-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline h-10"
                                 id="password"
                                 type="password"
-                                placeholder="Your password"
+                                placeholder="Your email"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
