@@ -1,10 +1,9 @@
-import ReactPrint from "react-to-print";
-import IgoLogo from "../Invoice/Igo.png";
-import { MdCurrencyRupee } from "react-icons/md";
-import { useRef, useState, useEffect } from "react";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { MdModeEdit } from "react-icons/md";
+import * as React from "react";
+import { useRef, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
+import { MdCurrencyRupee, MdModeEdit, MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import ReactToPrint from "react-to-print";
+import IgoLogo from "../Invoice/Igo.png";
 
 
 
@@ -14,25 +13,66 @@ function Template(props) {
 
     const [Item, setItem] = useState("");
     const [Amount, setAmount] = useState("");
+    const [index, setIndex] = useState(0);
+    const [vatAmount, setVatAmount] = useState(0);
 
     const [vat, setVat] = useState('')
 
+    const [isHidden, setIsHidden] = useState(true);
+    const [isAddOpen, setIsAddOpen] = useState(false);
+    const [sum, setSum] = useState(0);
+    const [List, setList] = useState([]);
+
+    // useEffect(() => {
+    //     console.log(`useEffect is working`);
+    // }, [vat, Amount])
+
+
+
+    const addOpenOnClick = () => {
+        setAirPopup(true);
+        setIsAddOpen(true);
+        setAmount("");
+        setItem("");
+    }
+    const updatedEditOpenClick = (items, index) => {
+        console.log("upf");
+        setAirPopup(true);
+        setIsAddOpen(false);
+        setAmount(items.amount);
+        setItem(items.product);
+        setIndex(index)
+    }
+    const addData = () => {
+        console.log("add Datat");
+        List.push({
+            product: Item,
+            amount: Amount,
+        });
+        setItem("");
+        setAmount("");
+        setAirPopup(false);
+        getSumOfListAmt(List);
+    };
+    const editData = () => {
+        const editedData = {
+            product: Item,
+            amount: Amount,
+        };
+        List[index] = editedData;
+        setList(List)
+        setItem("");
+        setAmount("");
+        setAirPopup(false);
+        getSumOfListAmt(List);
+    };
     const removeFunction = (index) => {
         let Filtered = List.filter((Item, i) => {
             return i !== index;
         });
         setList(Filtered);
+        getSumOfListAmt(Filtered);
     };
-
-    const updatedEditOpenClick = (items, index) => {
-
-        setAirPopup(true);
-        setAmount(items.amount);
-        setItem(items.product);
-
-    }
-
-
     const closePopup = () => {
         setAirPopup(false);
         setAmount("");
@@ -40,70 +80,104 @@ function Template(props) {
 
     }
 
-
-    useEffect(() => {
-        console.log(`useEffect is working`);
-    }, [vat, Amount])
-
-
-
-    const [List, setList] = useState([]);
-
-    const addData = () => {
-        List.push({
-            product: Item,
-            amount: Amount,
-        });
-
-        setItem("");
-        setAmount("");
-        setAirPopup(false);
-    };
-
-
-    let sum = 0;
-    List.forEach((amount) => {
-        sum += parseInt(amount.amount);
-    });
-
-
-
-
+    //  sum = 0;
+    // List.forEach((amount) => {
+    //     sum += parseInt(amount.amount);
+    // });
 
     const onChangeVat = (e) => {
         const vatValue = e.target.value.replace(/\D/g, "");
         const value = vatValue.length > 2 ? vatValue?.substring(0, 2) : vatValue;
-        setVat(value)
+        setVat(value);
+        const tempVatAmt = ((value * sum) / 100);
+        setVatAmount(tempVatAmt);
+        console.log("###", value, sum, tempVatAmt);
+    }
+    const getSumOfListAmt = (records) => {
+        console.log(records);
+        const tempSum = records.length === 0 ? 0 : records?.reduce((total, item) => parseInt(total) + parseInt(item.amount), 0);
+        console.log("summm " ,tempSum);
+        const tempVatAmt = ((vat * tempSum) / 100);
+        console.log("tempVatAmt ",tempVatAmt);
+        setVatAmount(tempVatAmt);
+        setSum(tempSum);
     }
 
+    // let ab = 0;
+    // function vatOnchange(vat, sum) {
+    //     console.log("22");
 
-    let ab = 0;
-    function vatOnchange(vat, sum) {
-        ab = (sum * vat) / 100;
-    }
+    //     ab = (sum * vat) / 100;
+    // }
 
-    let abc = vatOnchange(vat, sum);
+    // let abc = vatOnchange(vat, sum);
+    // let b = 0;
+    // function totalFunction(ab, sum) {
+    //     console.log("11");
+    //     let a = (parseInt(sum)) + (parseInt(ab))
+    //     b = a;
+    //     return b;
+    // }
 
+    // let t = totalFunction(ab, sum)
 
+    const onBeforeGetContentResolve = React.useRef(null);
 
-    let b = 0;
-    function totalFunction(ab, sum) {
-        let a = (parseInt(sum)) + (parseInt(ab))
-        b = a;
-        return b;
-    }
+    const [loading, setLoading] = React.useState(false);
+    // const [text, setText] = React.useState("old boring text");
 
-    let t = totalFunction(ab, sum)
+    const handleAfterPrint = React.useCallback(() => {
+        setIsHidden(true)
+        console.log("`onAfterPrint` called");
+    }, []);
 
+    const handleBeforePrint = React.useCallback(() => {
+        console.log("`onBeforePrint` called");
+    }, []);
+
+    React.useEffect(() => {
+        if (
+            // text === "New, Updated Text!" &&
+            typeof onBeforeGetContentResolve.current === "function"
+        ) {
+            onBeforeGetContentResolve.current();
+        }
+    }, [onBeforeGetContentResolve.current]);
+
+    const reactToPrintContent = React.useCallback(() => {
+        return ref.current;
+    }, [ref.current]);
+
+    const reactToPrintTrigger = React.useCallback(() => {
+        return <button className="py-2.5  w-[125px]   text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100
+      dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Print</button>;
+    }, []);
+
+    const handleOnBeforeGetContent = React.useCallback(() => {
+        console.log("`onBeforeGetContent` called");
+        setLoading(true);
+        setIsHidden(false)
+        // setText("Loading new text...");
+
+        return new Promise((resolve) => {
+            onBeforeGetContentResolve.current = resolve;
+
+            setTimeout(() => {
+                setLoading(false);
+                // setText("New, Updated Text!");
+                resolve();
+            }, 2000);
+        });
+    }, [setLoading]);
     return (
-        <>
-            <div className=" w-full" ref={ref}>
+        <> <div className="flex flex-col items-center" >
+            <div className=" w-[1000px]   " ref={ref}>
                 <div className=" mr-8 ml-8 ">
                     <div className="row">
                         <div>
-                            <div className="col-md-12 mt-4">
+                            <div className="w-full mt-4">
                                 <div className="flex justify-between">
-                                    <div className="w-[67%] ">
+                                    <div className=" ">
                                         <div className=" flex  justify-between ">
                                             <div className=" h-[48px] flex justify-center items-center ">
                                                 <h2
@@ -162,7 +236,7 @@ function Template(props) {
                                         </p>
                                     </div>
 
-                                    <div className="w-[33%]  flex flex-col items-end ">
+                                    <div className="  flex flex-col items-end ">
                                         <div className="  ">
                                             <img
                                                 className=" h-[48px]   "
@@ -199,8 +273,8 @@ function Template(props) {
                                     </div>
                                 </div>
 
-                                <div>
-                                    <table className="table">
+                                <div className="" >
+                                    <table className="table ">
                                         <thead>
                                             <tr>
                                                 <th>
@@ -209,25 +283,30 @@ function Template(props) {
                                                 <th>
                                                     <h5>Price</h5>
                                                 </th>
-                                                <th>
-                                                    <h5 className=" text-center">Edit</h5>
-                                                </th>
+                                                {
+                                                    isHidden
+                                                        ?
+                                                        <th >
+                                                            <h5 >Edit</h5>
+                                                        </th>
+                                                        : null
+                                                }
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {List.length
                                                 ? List.map((items, index) => {
                                                     return (
-                                                        <tr key={index}>
-                                                            <td className="col-md-9">{items.product}</td>
-                                                            <td className="col-md-2">
+                                                        <tr key={index} >
+                                                            <td className="">{items.product}</td>
+                                                            <td className="">
                                                                 <i
                                                                     className="fas fa-rupee-sign"
                                                                     area-hidden="true"
                                                                 ></i>{" "}
                                                                 ₹ {items.amount}{" "}
                                                             </td>
-                                                            <td className="col-md-1">
+                                                            <td className="">
                                                                 <div className=" flex justify-around items-center gap-2 " >
                                                                     <button type="button" onClick={() => updatedEditOpenClick(items, index)} class=" w-[100%] h-[25px] flex justify-center items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600
                                                              dark:hover:text-white dark:hover:bg-gray-700"><MdModeEdit /></button>
@@ -272,7 +351,7 @@ function Template(props) {
                                                                 className="fas fa-rupee-sign"
                                                                 area-hidden="true"
                                                             ></i>{" "}
-                                                            ₹  {Math.round(ab)}
+                                                            ₹  {Math.round(vatAmount)}
                                                         </strong>
                                                     </p>
                                                 </td>
@@ -293,7 +372,7 @@ function Template(props) {
                                                                 className="fas fa-rupee-sign"
                                                                 area-hidden="true"
                                                             ></i>{" "}
-                                                            ₹ {Math.round(b)}{" "}
+                                                            ₹ {Math.round(vatAmount) + Math.round(sum)}{" "}
                                                         </strong>
                                                     </h4>
                                                 </td>
@@ -330,34 +409,36 @@ function Template(props) {
                     </div>
                 </div>
             </div>
+            {loading ? <p className="indicator flex justify-center items-center">Loading...</p>
+                :
+                <div className=" container flex items-center z-10  justify-center gap-3 mt-4 mb-4 ">
 
-            <div className=" container flex items-center z-10  justify-center gap-3 mt-4 mb-4 ">
 
+                    <button
 
-                <button
-
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-[125px] py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-[125px] py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
                  dark:focus:ring-blue-800"
-                    onClick={() => setAirPopup(true)}
-                >
-                    Add List
-                </button>
+                        onClick={addOpenOnClick}
+                    >
+                        Add List
+                    </button>
 
-                <ReactPrint
-                    trigger={() => (
-                        <button
 
-                            class="py-2.5  w-[125px]   text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100
-                 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                        >
-                            Print
-                        </button>
-                    )}
-                    content={() => ref.current}
-                    documentTitle={`INVOICE ${props.InvoiceNumber}`}
-                />
-            </div>
 
+                    <div>
+                        <ReactToPrint
+                            content={reactToPrintContent}
+                            documentTitle={`INVOICE ${props.InvoiceNumber}`}
+                            onAfterPrint={handleAfterPrint}
+                            onBeforeGetContent={handleOnBeforeGetContent}
+                            onBeforePrint={handleBeforePrint}
+                            // removeAfterPrint
+                            trigger={reactToPrintTrigger}
+                        />
+                    </div>
+                </div>
+
+            }
 
             {openAirPopup ?
 
@@ -400,14 +481,31 @@ function Template(props) {
                                         />
                                     </div>
                                 </div>
-                                <button
-                                    onClick={addData}
 
-                                    type="button"
-                                    className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:green-red-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5"
-                                >
-                                    Add
-                                </button>
+                                {isAddOpen
+
+
+                                    ?
+
+                                    <button
+                                        onClick={addData}
+
+                                        type="button"
+                                        className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:green-red-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5"
+                                    >
+                                        Add
+                                    </button> :
+
+                                    <button
+                                        onClick={editData}
+
+                                        type="button"
+                                        className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:green-red-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5"
+                                    >
+                                        Update
+                                    </button>
+
+                                }
                                 <button
 
                                     type="button"
@@ -423,7 +521,7 @@ function Template(props) {
                 </div>
                 : null}
 
-
+        </div>
         </>
     );
 }
