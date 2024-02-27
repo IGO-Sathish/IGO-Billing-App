@@ -277,16 +277,16 @@ function Template(props) {
                                     <table className="table ">
                                         <thead>
                                             <tr>
-                                                <th>
+                                                <th className="w-[800px] text-left" >
                                                     <h5>List of Items</h5>
                                                 </th>
-                                                <th>
+                                                <th  className="w-[146px]">
                                                     <h5>Price</h5>
                                                 </th>
                                                 {
                                                     isHidden
                                                         ?
-                                                        <th >
+                                                        <th  className="w-[80px]" >
                                                             <h5 >Edit</h5>
                                                         </th>
                                                         : null
@@ -298,25 +298,45 @@ function Template(props) {
                                                 ? List.map((items, index) => {
                                                     return (
                                                         <tr key={index} >
-                                                            <td className="">{items.product}</td>
-                                                            <td className="">
-                                                                <i
-                                                                    className="fas fa-rupee-sign"
-                                                                    area-hidden="true"
-                                                                ></i>{" "}
-                                                                ₹ {items.amount}{" "}
+                                                            <td className=" break-all  pr-4"> {items.product}</td>
+                                                            <td className="relative min-h-150">
+                                                                
+                                                    <div  className="absolute bottom-2  left-2" >
+
+                                                    ₹ {items.amount}{" "}
+
+
+                                                    </div>
+                                                    
+                                        
+                                                            
+                                                        
+
+                                                               
+                                                
+
                                                             </td>
-                                                            <td className="">
-                                                                <div className=" flex justify-around items-center gap-2 " >
-                                                                    <button type="button" onClick={() => updatedEditOpenClick(items, index)} class=" w-[100%] h-[25px] flex justify-center items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600
+                                                            {
+                                                    isHidden
+                                                        ?
+                                                        <td className="relative "> 
+                                                    
+
+                                                        <div className="  absolute bottom-2  flex  justify-around items-center gap-2 " >
+                                                                    <button type="button" onClick={() => updatedEditOpenClick(items, index)} class=" w-[25px] h-[25px] flex justify-center items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600
                                                              dark:hover:text-white dark:hover:bg-gray-700"><MdModeEdit /></button>
                                                                     <button type="button"
                                                                         onClick={() => removeFunction(index)}
-                                                                        class=" w-[100%] h-[25px] flex justify-center items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600
+                                                                        class="w-[25px] h-[25px] flex justify-center items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600
                                                              dark:hover:text-white dark:hover:bg-gray-700"><IoTrashOutline /></button>
 
-                                                                </div>
+
+                                                        </div>
+                                                            
                                                             </td>
+                                                        : null
+                                                }
+                                                      
                                                         </tr>
                                                     );
                                                 })
@@ -324,14 +344,14 @@ function Template(props) {
                                             <tr>
                                                 <td className="text-right">
                                                     <p>
-                                                        <strong className="" >Sub Total </strong>  <strong>: </strong>
+                                                        <strong className="" >Sub Total </strong>  <strong  className="mr-2">: </strong>
                                                     </p>
 
                                                     <p>
 
                                                         <strong>VAT</strong>
-                                                        <input value={vat} name="Vat" onChange={onChangeVat} className=" w-[22px] text-center " type="tel" placeholder="0" />
-                                                        <strong className="mr-1 text-gray-400 " >%  </strong>  <strong>: </strong>
+                                                        <input value={vat} name="Vat" onChange={onChangeVat} autoComplete="off" className=" w-[22px] text-center " type="tel" placeholder="0" />
+                                                        <strong className="mr-1 text-gray-400 " >%  </strong>  <strong  className="mr-2">: </strong>
                                                     </p>
                                                 </td>
                                                 <td>
@@ -346,7 +366,7 @@ function Template(props) {
                                                     </p>
 
                                                     <p>
-                                                        <strong>
+                                                        <strong >
                                                             <i
                                                                 className="fas fa-rupee-sign"
                                                                 area-hidden="true"
@@ -362,7 +382,7 @@ function Template(props) {
                                             <tr style={{ color: "#F81D2D" }}>
                                                 <td style={{ color: "#EC842A" }} className="text-right">
                                                     <h4>
-                                                        <strong>Total Invoice Amount :</strong>
+                                                        <strong className="mr-2" >Total Invoice Amount :</strong>
                                                     </h4>
                                                 </td>
                                                 <td style={{ color: "#EC842A" }} className="text-left">
@@ -386,14 +406,14 @@ function Template(props) {
                                 </div>
                                 <div className="row">
                                     <div className="col-sm-8">
-                                        <p className="text-sm ">
+                                        <p className="text-sm p-2 ">
                                             <strong> Payment Terms :</strong> Due date for payment is
                                             30 days from the invoice date. <br /> Thank you for your prompt
                                             attention.
                                         </p>
                                     </div>
 
-                                    <div className="col-sm-4 justify-start items-end flex flex-col ">
+                                    <div className="col-sm-4 justify-start items-end flex flex-col  ">
                                         <p className="text-sm w-[150px] ">
                                             <strong>PO :</strong> #IGO-00123456{" "}
                                         </p>
@@ -411,7 +431,7 @@ function Template(props) {
             </div>
             {loading ? <p className="indicator flex justify-center items-center">Loading...</p>
                 :
-                <div className=" container flex items-center z-10  justify-center gap-3 mt-4 mb-4 ">
+                <div className=" container w-[1000px] flex items-center z-10  justify-center gap-3 mt-4 mb-4 ">
 
 
                     <button
@@ -443,7 +463,7 @@ function Template(props) {
             {openAirPopup ?
 
 
-                <div className="h-screen w-screen bg-[#000000a6] z-[100] absolute flex items-center justify-center top-0 left-0">
+                <div className="  h-screen w-screen bg-[#000000a6] z-[100] absolute flex items-center justify-center top-0 left-0">
 
 
 
